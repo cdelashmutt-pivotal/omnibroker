@@ -1,4 +1,4 @@
-package net.grogscave.omnibroker;
+package net.grogscave.omnibroker.repositories;
 
 import net.grogscave.omnibroker.domain.Service;
 

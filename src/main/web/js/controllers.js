@@ -1,16 +1,12 @@
-var omnibrokerApp = angular.module('omnibrokerApp', []);
+var omnibrokerControllers = angular.module('omnibrokerControllers', []);
 
-omnibrokerApp.controller('ServiceListCtrl', function ($scope) {
-  $scope.services = [
-    {'name': 'Service 1',
-     'description': 'A service.'},
-    {'name': 'Service 2',
-     'description': 'A cooler service.'},
-    {'name': 'Service 3',
-     'description': 'The coolest service.'}
-  ];
-  
+omnibrokerControllers.controller('ServiceListCtrl', ['$scope', 'Service', function ($scope, Service) {
+  var services = Service.query(function(){
+	  if(services && services._embedded && services._embedded.service)
+	  $scope.services = services._embedded.service;
+  });
+
   $scope.addService = function() {
 	alert("Hello!");  
   };
-});
+}]);
