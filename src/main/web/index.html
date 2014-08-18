@@ -1,0 +1,18 @@
+<!doctype html>
+<html ng-app="omnibrokerApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
+    <script src="js/controllers.js"></script>
+    <link rel="stylesheet" href="css/omnibroker.css" />
+  </head>
+  <body>
+    <div ng-controller="ServiceListCtrl">
+      <h1>Services: {{services.length}}</h1>
+      <div class="serviceList" ng-repeat="service in services">
+      	<div class="serviceTitle">{{service.name}}</div>
+      	<div class="serviceDescription">{{service.description}}</div>
+      </div>
+      <button ng-click="addService()">Add Service</button>
+    </div>
+  </body>
+</html>
