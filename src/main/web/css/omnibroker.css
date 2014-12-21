@@ -1,15 +1,14 @@
 .serviceList
 {
-	margin-bottom: 10px;
+}
+
+.serviceListHover
+{
+	background-color: lightgray;
 }
 
 .serviceList div.serviceTitle
 {
 	font-size: large;
 	font-weight: bold;
-}
-
-.serviceList div.serviceTitle
-{
-	
 }

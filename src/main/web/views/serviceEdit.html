@@ -1,0 +1,173 @@
+<form role="form">
+	<div class="modal-header">
+		<h3 class="modal-title">{{service ? "Create" : "Edit"}} Service</h3>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+			<label for="inputName">Name</label> <input type="text"
+				class="form-control" id="inputName" placeholder="Enter Service Name"
+				ng-model="service.name">
+		</div>
+		<div class="form-group">
+			<label for="inputDescription">Description</label>
+			<textarea class="form-control" id="inputDescription" rows="3"
+				placeholder="Enter a Description" ng-model="service.description"></textarea>
+		</div>
+		<div class="checkbox">
+			<label> <input type="checkbox" ng-model="service.bindable">
+				Bindable?
+			</label>
+		</div>
+		<div class="form-group">
+			<label for="inputTags">Tags</label> <input type="text"
+				class="form-control" id="inputTags" placeholder="Enter Tags"
+				ng-model="service.tags">
+		</div>
+		<div class="form-group">
+			<label for="inputRequires">Requires</label> <input type="text"
+				class="form-control" id="inputRequires"
+				placeholder="Enter Required Services List"
+				ng-model="service.requires">
+		</div>
+		<div class="well">
+		<legend class="legend">Plans</legend>
+		<fieldset class="fieldset">
+			<div ng-repeat="plan in service.plans">
+				<div>
+				<div class="form-group">
+				<button type="button" class="btn btn-sm" ng-click="removePlan($index)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+					<label for="inputPlanName{{$index}}">Plan Name</label> <input type="text"
+						class="form-control" id="inputPlanName{{$index}}"
+						placeholder="Enter Plan Name" ng-model="plan.name">
+				</div>
+				<div class="form-group">
+					<label for="inputPlanDescription{{$index}}">Plan Description</label> <input
+						type="text" class="form-control" id="inputPlanDescription{{$index}}"
+						placeholder="Enter Plan Description" ng-model="plan.description">
+				</div>
+				</div>
+			</div>
+			<button type="button" class="btn btn-sm" ng-click="addPlan()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+		</fieldset>
+		</div>
+	</div>
+	<span class="glyphicon"
+		ng-click="isServiceMetadataCollapsed = !isServiceMetadataCollapsed"
+		ng-class="isServiceMetadataCollapsed ? 'glyphicon-chevron-down' : 'glyphicon-chevron-right'"></span>
+	Service Metadata
+	<div collapse="!isServiceMetadataCollapsed">
+		<div class="well">
+			<div class="form-group">
+				<label for="inputMarketPlaceName">Marketplace Short Name</label> <input
+					type="text" class="form-control" id="inputMarketPlaceName"
+					placeholder="Enter a short display name for the service"
+					ng-model="service.metadata.name">
+			</div>
+			<div class="form-group">
+				<label for="inputMarketPlaceDescription">Marketplace
+					Description</label>
+				<textarea class="form-control" id="inputMarketPlaceDescription"
+					rows="3"
+					placeholder="Enter a Description for display via the Marketplace"
+					ng-model="service.metadata.description"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="inputMarketPlaceDisplayName">Marketplace Display
+					Name</label> <input type="text" class="form-control"
+					id="inputMarketPlaceDisplayName"
+					placeholder="Enter a name to display in graphic clients for the service"
+					ng-model="service.metadata.displayName">
+			</div>
+			<div class="form-group">
+				<label for="inputMarketPlaceImageURL">Marketplace Image URL</label>
+				<input type="text" class="form-control"
+					id="inputMarketPlaceImageURL"
+					placeholder="Enter a URL that points to an image to use for this service"
+					ng-model="service.metadata.imageUrl">
+			</div>
+			<div class="form-group">
+				<label for="inputMarketPlaceLongDescription">Marketplace
+					Long Description</label>
+				<textarea class="form-control" id="inputMarketPlaceLongDescription"
+					rows="3"
+					placeholder="Enter a Detailed Description for display via the Marketplace"
+					ng-model="service.metadata.longDescription"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="inputMarketPlaceProviderName">Marketplace
+					Provider Display Name</label> <input type="text" class="form-control"
+					id="inputMarketPlaceProviderName"
+					placeholder="Enter the name of the provider of this service"
+					ng-model="service.metadata.providerDisplayName">
+			</div>
+			<div class="form-group">
+				<label for="inputMarketPlaceDocumentationURL">Marketplace
+					Documentation URL</label> <input type="text" class="form-control"
+					id="inputMarketPlaceDocumentationURL"
+					placeholder="Enter a URL that points to the documentation for this service"
+					ng-model="service.metadata.documentationUrl">
+			</div>
+			<div class="form-group">
+				<label for="inputMarketPlaceSupportURL">Marketplace Image
+					URL</label> <input type="text" class="form-control"
+					id="inputMarketPlaceSupportURL"
+					placeholder="Enter a URL that points to support resources for this service"
+					ng-model="service.metadata.supportUrl">
+			</div>
+		</div>
+	</div>
+	<br /> <span class="glyphicon"
+		ng-click="isDashboardSSOCollapsed = !isDashboardSSOCollapsed"
+		ng-class="isDashboardSSOCollapsed ? 'glyphicon-chevron-down' : 'glyphicon-chevron-right'"></span>
+	Dashboard SSO
+	<div collapse="!isDashboardSSOCollapsed">
+		<div class="well">
+			<div class="form-group">
+				<label for="inputOauth2Id">Oauth2 ID</label> <input type="text"
+					class="form-control" id="inputOauth2Id"
+					placeholder="Enter Oauth2 ID"
+					ng-model="service.dashboard_client.id">
+			</div>
+			<div class="form-group">
+				<label for="inputOauth2Secret">Oauth2 Secret</label> <input
+					type="text" class="form-control" id="inputOauth2Secret"
+					placeholder="Enter Oauth2 Secret"
+					ng-model="service.dashboard_client.secret">
+			</div>
+			<div class="form-group">
+				<label for="inputOauth2Redirect">Oauth2 Redirect URI</label> <input
+					type="text" class="form-control" id="inputOauth2Redirect"
+					placeholder="Enter Oauth2 Redirect URL"
+					ng-model="service.dashboard_client.redirect_uri">
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="ok()">OK</button>
+		<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+	</div>
+</form>
+
+<!-- 
+name: mysql
+description: A MySQL-compatible relational database
+bindable: true
+tags: null
+metadata: null
+requires: null
+plans: 
+[  { 
+id: plan1-guid-here
+name: small
+description: A small shared database with 100mb storage quota and 10 connections
+metadata: null
+free: false
+ } , ...
+]
+dashboard_client:  { 
+id: client-id-1
+secret: secret-1
+redirect_uri: https://dashboard.service.com
+ }
+  -->

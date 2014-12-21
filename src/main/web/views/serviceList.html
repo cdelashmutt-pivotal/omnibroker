@@ -1,0 +1,14 @@
+<div ng-controller="ServiceListCtrl" class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">Services</div>
+		<div class="serviceList panel-body"
+			ng-class="{'serviceListHover': hover}"
+			ng-repeat="service in services" ng-click="editService(service, $index)"
+			ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+			<button type="button" class="btn btn-sm" ng-click="removeService($index)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+			<div class="serviceTitle">{{service.name}}</div>
+			<div class="serviceDescription">{{service.description}}</div>
+		</div>
+	</div>
+	<button ng-click="addService()">Add Service</button>
+</div>
